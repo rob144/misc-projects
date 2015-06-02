@@ -1,0 +1,6 @@
+﻿http://www.asp.net/mvc/tutorials/getting-started-with-ef-5-using-mvc-4/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
+Initial Catalog=UniversityLMS;
+http://forums.asp.net/t/1768918.aspx
+http://stackoverflow.com/questions/19519233/jquery-date-validation-mvc-4-net-4-5-1-uk-date-must-be-a-date-error
+http://css-tricks.com/ajax-image-uploading/
+http://uxdesign.smashingmagazine.com/2011/08/22/new-approaches-to-designing-login-forms/

@@ -1,0 +1,72 @@
+﻿@model UniversityLMS.Models.Student
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Student</h2>
+
+<div class="editor-fields-section">
+    <div class="editor-label">
+        <label for="file">Photo file</label>
+    </div>
+    <div class="editor-field-image-upload">
+             @Html.EditorFor(model => model.Photo)
+    </div>
+</div>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Student</legend>
+
+        @Html.HiddenFor(model => model.StudentID)
+
+        <div class="editor-fields-section">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FirstMidName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.FirstMidName)
+                @Html.ValidationMessageFor(model => model.FirstMidName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.LastName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.LastName)
+                @Html.ValidationMessageFor(model => model.LastName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.EmailAddress)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.EmailAddress)
+                @Html.ValidationMessageFor(model => model.EmailAddress)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.EnrollmentDate)
+            </div>
+            <div class="editor-field">
+                <input id="EnrollmentDate-disabled" name="EnrollmentDate-disabled" 
+                    type="text" value="@Model.EnrollmentDate" disabled="disabled"/>
+                    @Html.HiddenFor(model => model.EnrollmentDate)
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <input class="button" type="submit" value="Save" />
+            @Html.ActionLink("Back to List", "Index", new { }, new { @class = "back-link" } )
+        </div>
+
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

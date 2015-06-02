@@ -1,0 +1,474 @@
+﻿body {
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+}
+
+header, footer, nav, section {
+    display: block;
+}
+
+a:link {
+	color: #666;
+	text-decoration:none;
+}
+
+a:visited {
+	color: #999999;
+	text-decoration:none;
+}
+
+a:active, a:hover {
+	color: #bd5a35;
+	text-decoration:underline;
+}
+
+h2 {
+    font-size:13pt;
+    font-weight:normal;
+    margin:10px 0 10px 0;
+    padding:5px;
+    border:1px solid #B2BDC4;
+    border-radius:8px;
+    box-shadow:0 0 5px 2px #C9D5DD;
+}
+
+.pageOuter {
+    width:700px;
+    margin:30px auto 0 auto;
+    padding:20px;
+    border:1px solid #B2BDC4;
+    border-radius:10px;
+    box-shadow: 0px 0px 5px 2px #C9D5DD;
+}
+
+/************************************************************
+    LoginControl view 
+************************************************************/
+
+.logoutAction {
+    float:right;
+    text-align:right;
+    margin:0;
+    padding:0;
+    background-color:#fff;
+    border:0;
+    text-decoration:underline;
+    color:blue;
+    cursor:pointer;
+}
+
+.loginControl {
+    font-size:9pt;
+    float:right;
+    width:250px;
+    margin:0;
+    padding:0;
+    text-align:right;
+}
+
+.loginControl input {
+    font-size: 9pt;
+}
+
+.loginControlsContainer {
+    width:300px;
+    margin:20px auto 0 auto;
+}
+
+/***********************************************************
+    Login view
+************************************************************/
+
+div.login-row {
+    margin:0 0 15px 0;
+}
+
+#login-label-username, #login-label-password {
+    float:left;
+    width:80px;
+}
+
+#login-field-username, #login-field-password {
+    float:right;
+    width:220px;
+    text-align:right;
+}
+
+#login-field-username #UserName, #login-field-password #Password {
+    width:200px;
+    float:right;
+}
+
+.loginFailed {
+    text-align:center;
+    color:red;
+}
+
+/***********************************************************
+    Home projects view
+************************************************************/
+
+.actionMenu {
+    overflow:auto;
+    width:100%;
+    margin:0 0 10px 0;
+    border-bottom:1px solid #ddd;
+}
+
+.actionLink {
+    margin:0 10px 10px 0;
+    float:left;
+}
+
+.project {
+    overflow:auto;
+    padding:5px;
+    border:1px solid #F2F2F2;
+    border-radius:8px;
+    margin:0 0 10px 0;
+    box-shadow:0 0 6px grey;
+}
+
+.project:hover {
+	background: #f2f2f2;
+}
+
+.projectInfo {
+    float:left;
+    width:300px;
+}
+
+.projectTitle {
+    float:left;
+    width:280px;
+    font-weight:bold;
+}
+
+.projectDate, .projectStatus {
+    float:left;
+    width:280px;
+}
+
+.worker {
+    width:200px;
+    padding:5px;
+    border:1px solid green;
+    border-radius:8px;
+    margin:0 0 10px 0;
+}
+
+.statusLightOuter {
+    float:left;
+    margin:0 10px 0 0;
+    border-radius:35px;
+    border:5px solid #ddd;
+    background-color:#fff;
+}
+
+.statusLightRed, .statusLightAmber, .statusLightGreen {
+    width:40px;
+    height:40px;
+    padding:5px;
+    text-align:center;
+    border-radius:30px;
+    background-color:red;
+}
+
+.statusLightAmber {
+    background-color:orange;
+}
+
+.statusLightGreen {
+    background-color:green;
+}
+
+.statusLightImage {
+    width:50px
+}
+
+.deleteProject, .editProject, .viewProject {
+    float:right;
+    clear:right;
+    text-align:center;
+    padding:0;
+}
+
+.deleteProject a, .editProject a, .viewProject a{
+    display:block;
+    margin:0;
+    padding:0;
+    line-height:0;
+}
+
+.deleteProject {
+    margin:0px 2px 0px 10px;
+}
+
+.editProject {
+    margin:5px 2px 5px 10px;
+}
+
+.viewProject {
+    margin:1px 2px 0px 10px;
+}
+
+/***********************************************************
+    Edit project view
+************************************************************/
+
+#container-unassigned-personel {
+    overflow:auto;
+    float:left;
+}
+
+#select-project-personel, #container-assigned-personel {
+    min-width:220px;
+    float:left;
+    width:220px;
+}
+
+#label-unassigned-personel, #label-assigned-personel {
+    display:block;
+    margin:0 0 5px 0;
+}
+
+#select-project-personel-added {
+    min-width:220px;
+    float:left;
+}
+
+#container-add-remove-personel {
+    width:40px;
+    height:140px;
+    float:left;
+    margin:0 5px 0 5px;
+}
+
+#personel-add {
+    display:block;
+    width:30px;
+    margin:66px auto 0 auto;
+}
+
+#personel-remove {
+    display:block;
+    width:30px;
+    margin:5px auto 0 auto;
+}
+
+.editor-row-status {
+    height:30px;
+}
+
+/***********************************************************
+    Basic forms
+************************************************************/
+fieldset {
+    border: 1px solid #ddd;
+    padding: 20px 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    margin:0;
+    padding:0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+    width:400px;
+    margin:0;
+    padding:5px;
+    border-radius:6px;
+    border:1px solid gray;
+    font-family:Arial;
+}
+
+select {
+    margin:0;
+    padding:5px;
+    border-radius:8px;
+}
+
+.editor-row {
+    height:40px;
+}
+
+.editor-label {
+    float:left;
+    width:20%;
+    margin: 8px 0 0 0;
+}
+
+.editor-field {
+    float:left;
+    width:78%;
+    margin: 8px 0 0 0;
+    text-align:left;
+}
+
+.editor-field input[type="text"] {
+    width:300px;  
+}
+
+input[type="text"], 
+input[type="password"], 
+input[type="email"] {
+    padding:5px;
+    border-radius:6px;
+    border:1px solid gray;
+}
+
+#submit{
+    min-width:80px;
+    min-height:30px;  
+}
+
+/***********************************************************
+    Display details views
+************************************************************/
+
+.display-label {
+    float:left;
+    width:150px;
+    clear:left;
+    margin:12px 0 0 0;
+    padding:12px 0 0 0;
+    border-top:2px solid gray;
+}
+
+.display-field {
+    float:left;
+    width:450px;
+    margin:12px 0 0 0;
+    padding:12px 0 0 0;
+    border-top:2px solid gray;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+
+/*
+    Table styles
+----------------------------------------------------------------------- */
+
+table {
+	font-family:Arial, Helvetica, sans-serif;
+	color:#666;
+	font-size:12px;
+	text-shadow: 1px 1px 0px #fff;
+	background:#eaebec;
+	margin:20px 0 20px 0;
+	border:#ccc 1px solid;
+
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+
+	-moz-box-shadow: 0 1px 2px #d1d1d1;
+	-webkit-box-shadow: 0 1px 2px #d1d1d1;
+	box-shadow: 0 1px 2px #d1d1d1;
+}
+
+table th {
+	padding:21px 25px 22px 25px;
+	border-top:1px solid #fafafa;
+	border-bottom:1px solid #e0e0e0;
+
+	background: #ededed;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+	background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
+}
+
+table th:first-child {
+	text-align: left;
+	padding-left:20px;
+}
+
+table tr:first-child th:first-child {
+	-moz-border-radius-topleft:3px;
+	-webkit-border-top-left-radius:3px;
+	border-top-left-radius:3px;
+}
+
+table tr:first-child th:last-child {
+	-moz-border-radius-topright:3px;
+	-webkit-border-top-right-radius:3px;
+	border-top-right-radius:3px;
+}
+
+table tr {
+	text-align: center;
+	padding-left:20px;
+}
+
+table td:first-child {
+	text-align: left;
+	padding-left:20px;
+	border-left: 0;
+}
+
+table td {
+	padding:18px;
+	border-top: 1px solid #ffffff;
+	border-bottom:1px solid #e0e0e0;
+	border-left: 1px solid #e0e0e0;
+
+	background: #fafafa;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+	background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
+}
+
+table tr.even td {
+	background: #f6f6f6;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
+	background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6);
+}
+
+table tr:last-child td {
+	border-bottom:0;
+}
+
+table tr:last-child td:first-child {
+	-moz-border-radius-bottomleft:3px;
+	-webkit-border-bottom-left-radius:3px;
+	border-bottom-left-radius:3px;
+}
+
+table tr:last-child td:last-child {
+	-moz-border-radius-bottomright:3px;
+	-webkit-border-bottom-right-radius:3px;
+	border-bottom-right-radius:3px;
+}
+
+table tr:hover td {
+	background: #f2f2f2;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+	background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);	
+}

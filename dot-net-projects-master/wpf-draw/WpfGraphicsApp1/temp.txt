@@ -1,0 +1,29 @@
+﻿<Border x:Name="ToolBarBorder"  DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="1"
+                Width="47" Height="150" Margin="0,0,480,250">
+    <StackPanel Width="34" Margin="0,10,0,10" Background="White">
+        <StackPanel>
+            <Border BorderThickness="1" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Image x:Name="toolPencil" Source="toolbargraphics\pencilTool.png" 
+                        Width="30" MouseUp="PencilTool_MouseUp"/>
+            </Border>
+        </StackPanel>
+        <StackPanel Background="Transparent">
+            <Border BorderThickness="1" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Image x:Name="toolSquare" Source="toolbargraphics\squareTool.png" 
+                        Width="30" MouseUp="SquareTool_MouseUp" />
+            </Border>
+        </StackPanel>
+        <StackPanel>
+            <Border BorderThickness="1" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Image x:Name="toolCircle" Source="toolbargraphics\circleTool.png" 
+                        Width="30" MouseUp="CircleTool_MouseUp"/>
+            </Border>
+        </StackPanel>
+        <StackPanel>
+            <Border BorderThickness="1" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Image x:Name="toolLine" Source="toolbargraphics\lineTool.png" 
+                        Width="30" MouseUp="LineTool_MouseUp"/>
+            </Border>
+        </StackPanel>
+    </StackPanel>
+</Border>

@@ -1,0 +1,47 @@
+﻿@using UniversityLMS
+@model User
+
+@{
+    ViewBag.Title = "Index.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="POST" action="Login/Login">
+
+     @if(TempData["Message"] + "" != "" ) {<div class="loginFailed">@TempData["Message"]</div>}
+        
+    <div class="loginFormContainer">
+
+        <h3 id="loginFormTitle">Sign in</h3>
+
+        <div id="loginFormFields">
+            <div class="login-row">
+                <div id="login-label-username" class="editor-label">
+                    @Html.DisplayNameFor(model => model.UserName):
+                </div>
+                <div id="login-field-username" class="editor-field">
+                    @Html.EditorFor(model => model.UserName)
+                    @Html.ValidationMessageFor(model => model.UserName)
+                </div>
+            </div>
+
+            <div class="login-row">
+                <div id="login-label-password" class="editor-label">
+                    @Html.DisplayNameFor(model => model.Password):
+                </div>
+                <div id="login-field-password" class="editor-field">
+                    @Html.EditorFor(model => model.Password)
+                    @Html.ValidationMessageFor(model => model.Password)
+                </div>
+            </div>
+        </div>
+
+        <input id="login-button" class="button" type="submit" value="Login" />
+
+    </div>
+
+</form>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,126 @@
+﻿<Window x:Class="WpfGraphicsApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:self="clr-namespace:WpfGraphicsApp1"
+        Title="qDraw" Height="550" Width="550"
+        Background="LightGray">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="New" CanExecute="NewCommand_CanExecute" Executed="NewCommand_Executed" />
+        <CommandBinding Command="Open" CanExecute="OpenCommand_CanExecute" Executed="OpenCommand_Executed" />
+        <CommandBinding Command="Save" CanExecute="SaveCommand_CanExecute" Executed="SaveCommand_Executed" />
+        <CommandBinding Command="self:RDCustomCommands.Exit" CanExecute="ExitCommand_CanExecute" Executed="ExitCommand_Executed" />
+    </Window.CommandBindings>
+
+    <DockPanel LastChildFill="True">
+
+        <DockPanel DockPanel.Dock="Bottom" Margin="0" Background="White">
+            <Canvas DockPanel.Dock="Top" Height="1" Background="LightGray"></Canvas>
+            <Label x:Name="lblXCoord" Padding="5" Width="50"
+                    HorizontalAlignment="Left" Background="White">X: </Label>
+            <Label x:Name="lblYCoord" Padding="5" Width="50"
+                    HorizontalAlignment="Left" Background="White">Y: </Label>
+        </DockPanel>
+
+        <Menu DockPanel.Dock="Top" IsMainMenu="True">
+            <MenuItem Header="_File" >
+                <MenuItem Header="_New..." Command="New" />
+                <Separator />
+                <MenuItem Header="_Open..." Command="Open" />
+                <Separator />
+                <MenuItem Header="_Save" Command="Save" />
+                <MenuItem Header="_Save As..." Command="Save" />
+                <Separator />
+                <MenuItem Header="_Exit" Command="self:RDCustomCommands.Exit" />
+            </MenuItem>
+            <MenuItem Header="_Edit" />
+            <MenuItem Header="_View" />
+            <MenuItem Header="_Help" />
+        </Menu>
+
+        <DockPanel DockPanel.Dock="Top" Background="White">
+
+            <Canvas DockPanel.Dock="Bottom" Height="1" Background="LightGray"></Canvas>
+            
+            <Border DockPanel.Dock="Left" BorderThickness="2" Padding="2" 
+                    BorderBrush="Transparent"
+                    VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Image x:Name="toolPencil" Source="toolbargraphics\pencilTool.png" 
+                    Width="28" MouseUp="Tool_MouseUp"/>
+            </Border>
+                
+            <Border DockPanel.Dock="Left" BorderThickness="2" Padding="2" 
+                    BorderBrush="Transparent" HorizontalAlignment="Left">
+                <Image x:Name="toolSquare" Source="toolbargraphics\squareTool.png" 
+                    Width="28" MouseUp="Tool_MouseUp" />
+            </Border>
+
+            <Border DockPanel.Dock="Left" BorderThickness="2" Padding="2" 
+                    BorderBrush="Transparent" HorizontalAlignment="Left">
+                <Image x:Name="toolSquareFilled" Source="toolbargraphics\squareFilledTool.png" 
+                    Width="28" MouseUp="Tool_MouseUp" />
+            </Border>
+
+            <Border DockPanel.Dock="Left" BorderThickness="2" Padding="2" 
+                    BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Image x:Name="toolCircle" Source="toolbargraphics\circleTool.png" 
+                    Width="28" MouseUp="Tool_MouseUp"/>
+            </Border>
+
+            <Border DockPanel.Dock="Left" BorderThickness="2" Padding="2" 
+                    BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Image x:Name="toolCircleFilled" Source="toolbargraphics\circleFilledTool.png" 
+                    Width="28" MouseUp="Tool_MouseUp"/>
+            </Border>
+
+            <Border DockPanel.Dock="Left" BorderThickness="2" Padding="2" 
+                    BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Image x:Name="toolLine" Source="toolbargraphics\lineTool.png" 
+                    Width="28" MouseUp="Tool_MouseUp"/>
+            </Border>
+
+            <Border DockPanel.Dock="Left" BorderThickness="2" Padding="2" 
+                    BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Image x:Name="toolPolyline" Source="toolbargraphics\polylineTool.png" 
+                    Width="28" MouseUp="Tool_MouseUp"/>
+            </Border>
+
+            <Button x:Name="btnIncreaseStroke" DockPanel.Dock="Right" Width="16" Height="15"
+                    Margin="5,0,5,0" Padding="0" HorizontalAlignment="Right"
+                    Click="btnIncreaseStroke_Click">
+                <TextBlock Text="+" VerticalAlignment="Center" />
+            </Button>
+            <ComboBox x:Name="comboStrokeThickness" DockPanel.Dock="Right" 
+                      Width="40" Height="25" Background="White" 
+                      HorizontalAlignment="Right" SelectedValue="1" SelectedIndex="0"
+                      SelectedValuePath="Content">
+                <ComboBoxItem>1</ComboBoxItem>
+                <ComboBoxItem>2</ComboBoxItem>
+                <ComboBoxItem>3</ComboBoxItem>
+                <ComboBoxItem>4</ComboBoxItem>
+                <ComboBoxItem>5</ComboBoxItem>
+                <ComboBoxItem>6</ComboBoxItem>
+                <ComboBoxItem>7</ComboBoxItem>
+                <ComboBoxItem>8</ComboBoxItem>
+                <ComboBoxItem>9</ComboBoxItem>
+                <ComboBoxItem>10</ComboBoxItem>
+            </ComboBox>
+            <Button x:Name="btnDecreaseStroke" DockPanel.Dock="Right" Width="16" Height="15"
+                    Margin="0,0,5,0" Padding="0" HorizontalAlignment="Right"
+                    Click="btnDecreaseStroke_Click">
+                <TextBlock Text="-" VerticalAlignment="Center" />
+            </Button>
+
+        </DockPanel>
+
+        <ScrollViewer DockPanel.Dock="Right">
+            <Canvas Name="CanvasMain" Height="400" Width="400" Background="White" 
+                            MouseLeftButtonDown="Canvas_MouseLeftButtonDown" 
+                            MouseMove="Canvas_MouseMove"
+                            MouseLeftButtonUp="Canvas_MouseLeftButtonUp">
+            </Canvas>
+        </ScrollViewer>
+
+    </DockPanel>
+    
+</Window>

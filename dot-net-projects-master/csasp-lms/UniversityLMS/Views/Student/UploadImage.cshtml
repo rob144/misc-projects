@@ -1,0 +1,21 @@
+﻿@{Layout = "";}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Student Photo</title>
+        <link href="/Content/StudentPhotoUpload.css" rel="stylesheet" />
+    </head>
+    <body>
+        @{
+            if(ViewData["fileName"] + "" != ""){
+                <img alt="image" 
+                 id="student-photo-thumbnail"
+                 class="student-photo-thumbnail" 
+                 src="/Content/Uploads/@ViewData["fileName"]" />
+            }else{
+                <span>No image selected.</span>
+            }
+         }
+    </body> 
+</html>

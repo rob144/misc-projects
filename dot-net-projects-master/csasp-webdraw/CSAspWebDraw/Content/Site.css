@@ -1,0 +1,163 @@
+﻿body {
+	font-family:Arial;
+	font-size:11pt;
+	text-align:center;
+	padding:0;
+	margin:0;
+}
+h1{
+	margin:20px 0 10px 0;
+	font-size:16pt;
+}
+#page{
+	width:800px;
+	margin:20px auto 0 auto;
+	background-color:grey;
+}
+
+#workArea{
+	overflow:auto;
+}
+
+#canvasContainer{
+	overflow:auto;
+	width:600px;
+	height:620px;
+	margin:auto;
+	padding:10px;
+	background-color:#E0E0E0;	
+}
+
+#canvas1{
+	cursor:crosshair;
+	float:right;
+	margin:0;
+	background-color:white;
+}
+
+/*******************************************************
+	Top Menu 
+*******************************************************/
+		
+#menu-outer {
+	padding:0;
+	margin:0;
+	background:#fed;
+	width:100%;
+	overflow:auto;
+}
+
+#menu {
+	width:100%;
+	overflow:visible;
+	padding:0;
+	margin:0;
+	background:#fed;
+}
+
+#menu > li { 
+	display:inline; 
+	float:left; 
+	text-align:left;
+	padding-right:20px;
+	background:#fed;
+}
+
+#menu > li ul { 
+	display:none; 
+	position:absolute; 
+	z-index:1000;
+	list-style-type:none; 
+	padding-left:1px; 
+	padding-right:5px; 
+	background:#def;
+}
+
+#menu > li:hover ul { 
+z-index:1000;
+	display:block; 
+}
+
+#menu a {
+	text-decoration:none;
+}
+
+li div div {
+	margin:10px;
+}
+
+ul li ul li {
+	margin:10px;
+}
+
+/*******************************************************
+	Tools
+*******************************************************/
+
+#toolBox{
+	position:relative;
+	clear:both;
+	overflow:auto;
+	padding:4px 0 4px 4px;
+	margin-bottom:10px;
+	background-color:#D8D8D8;
+}
+
+#tools{
+	background-color:#D8D8D8;
+	overflow:auto;
+}
+
+div.tool{
+	text-align:center;
+	min-width:30px;
+	height:30px;
+	padding:3px;
+	margin:0 5px 0 0;
+	float:left;
+	border-radius:4px;
+	background-color:#fff;
+}
+div.tool:hover{
+	background-color:#7FC9FF;
+}
+div.toolInner{
+	background-color:#fff;
+	height:30px;
+	overflow:visible;
+}
+#gridTool, #snapTool{ font-size:9pt; }
+
+/**************************************************************************/
+
+#mousePosition{
+	float:right;
+	width:80px;
+	text-align:right;
+	margin: 1px 0 1px 2px;
+	color:black;
+	font-size:9pt;
+}
+
+#options{
+	float:left;
+	margin: 1px 5px 0 5px;
+	color:white;
+	font-size:9pt;
+}
+
+#options input{
+	vertical-align:middle;
+	margin:0;
+	padding:0;
+}
+
+#canvasTabContent{
+	text-align:left;
+	overflow:auto;
+	width:690px;
+	height:700px;
+	margin:0 auto 0 auto;
+	padding:0 0 0 10px;
+	background-color:grey;
+}

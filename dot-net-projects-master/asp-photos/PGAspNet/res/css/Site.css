@@ -1,0 +1,107 @@
+﻿
+body {
+    font-weight:10pt;
+    font-family:Arial;
+}
+
+#pageOuter {
+    width:700px;
+    text-align:center;
+    overflow:auto;
+    margin:10px auto 0 auto;
+    padding:20px;
+    box-shadow: 0 0 5px 1px #888;
+    border-radius:4px;
+}
+
+#siteTitle {
+    text-decoration:none;
+}
+
+h1 {
+    text-align:center;
+    display:block;
+    width:400px;
+    margin:0 auto 0 auto;
+}
+
+a:link { color:#000; }      
+a:visited { color:#000; }  
+a:hover { color:#000; }  
+a:active { color:#000; }
+
+#containerPhotos {
+    text-align:center;
+    width:670px;
+    margin:20px auto 0 auto;
+    padding:0 5px 0 0;
+    overflow:auto;
+}
+
+.photoOuter {
+    overflow:auto;
+    text-align:center;
+    float:left;
+    width:160px;
+    height:156px;
+    margin:0 10px 8px 0;
+    background-color:grey;
+    box-shadow: 1px 1px 3px 1px #BCBCBC;
+}
+
+.photoOuterRowEnd {
+    overflow:auto;
+    text-align:center;
+    float:left;
+    width:160px;
+    height:156px;
+    margin:0 0 8px 0;
+    background-color:grey;
+    box-shadow: 1px 1px 3px 1px #BCBCBC;
+}
+
+.photoInner {
+    overflow:auto;
+    position:relative;
+    margin:1px;
+    height:154px;
+    width:158px;
+    background-color:#fff;
+}
+
+.photoTitle {
+    font-size:10pt;
+}
+
+img.photo {
+    width: 150px;
+    display:block;
+    margin:4px auto 0 auto;
+}
+
+.photoControls {
+    position:absolute;
+    bottom:5px;
+    right:5px;
+    float:right;
+    overflow:auto;
+}
+
+.photoControl {
+   display:inline-block;
+   margin:0 0 0 5px;
+}
+
+.photoControlIcon {
+    width:15px;
+}
+
+#upload-iframe {
+    width:120px;
+    height:120px;
+}
+
+.uploadThumbnail {
+    width:100px;
+    height:100px;
+}

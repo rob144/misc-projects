@@ -1,0 +1,29 @@
+﻿<form id="frmAddStudentImage" enctype="multipart/form-data" action="/Student/UploadImage"
+        method="post" target="upload-iframe">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <input type="file" name="file" id="file">
+    <input type="hidden" name="studentId" value="@ViewData["studentId"]"/>
+</form>
+<iframe id="upload-iframe" class="upload-iframe" name="upload-iframe" 
+    src="/Student/UploadImage/@ViewData["studentId"]" scrolling="no" ></iframe>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#file").change(function () {
+            document.getElementById("file").form.submit();
+        });
+
+        $("#upload-iframe").load(function () {
+            var iFrame = document.getElementById("upload-iframe");
+            var img = getDoc(iFrame).getElementById("student-photo-thumbnail");
+            if (img != null) {
+                $(this).css("width", $(img).width());
+                $(this).css("height", $(img).height());
+            }
+        });
+
+    });
+
+    function getDoc(x) { return x.contentDocument || x.contentWindow.document; }
+</script>

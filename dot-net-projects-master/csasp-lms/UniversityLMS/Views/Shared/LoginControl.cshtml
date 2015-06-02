@@ -1,0 +1,25 @@
+﻿<div class="login-control">
+    @try{
+        if(TempData["Username"].ToString() + "" != ""){
+            <div>
+                <form method="post" action="/Login">
+                    <input type="hidden" name="action" value="logout" />
+                    <img id="login-control-user-icon" alt="user icon" src="/Content/user-icon-30.jpg" />
+                    <div id="login-control-username">@TempData["Username"]</div>
+                    <input id="logoutAction" class="logoutAction" type="submit" value="Sign out" />
+                </form>
+            </div>
+        }
+    }
+    catch (NullReferenceException ex)
+    {
+        if(!Request.Url.PathAndQuery.Equals("/Login", StringComparison.Ordinal)){
+        <div>
+            <form method="post" action="/Login">
+                <input type="hidden" name="action" value="login" />
+                <input id="loginAction" class="loginAction" type="submit" value="Sign in" />
+            </form>
+        </div>
+        }
+    }
+</div>

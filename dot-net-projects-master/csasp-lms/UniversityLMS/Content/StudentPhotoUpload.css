@@ -1,0 +1,11 @@
+﻿body {
+    margin:0;
+    padding:2px;
+    background-color:#efeeef;
+    font-family:"Segoe UI", Verdana, Helvetica, Sans-Serif;
+}
+
+.student-photo-thumbnail {
+    max-width:150px;
+    max-height:150px;
+}

@@ -1,0 +1,9 @@
+﻿http://www.asp.net/mvc/tutorials/mvc-4/getting-started-with-aspnet-mvc4/examining-the-edit-methods-and-edit-view
+
+https://help.github.com/articles/pushing-to-a-remote
+
+http://media.pragprog.com/titles/tsgit/chap-005-extract.html
+
+http://www.asp.net/mvc/tutorials/mvc-4/getting-started-with-aspnet-mvc4/adding-validation-to-the-model
+
+http://www.asp.net/mvc/tutorials/mvc-4/getting-started-with-aspnet-mvc4/examining-the-details-and-delete-methods

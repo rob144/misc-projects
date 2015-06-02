@@ -1,0 +1,52 @@
+﻿@model UniversityLMS.Models.Course
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Course Details</legend>
+
+    <div class="display-row">
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.CourseIDExternal)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.CourseIDExternal)
+        </div>
+    </div>
+
+    <div class="display-row">
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Title)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Title)
+        </div>
+    </div>
+
+    <div class="display-row">
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Credits)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Credits)
+        </div>
+    </div>
+
+    <div class="display-row">
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.DateCreated)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.DateCreated)
+        </div>
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.CourseID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

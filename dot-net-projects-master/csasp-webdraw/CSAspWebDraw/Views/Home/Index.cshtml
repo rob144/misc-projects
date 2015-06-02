@@ -1,0 +1,93 @@
+﻿<h1>WebDraw</h1>
+
+<div id="page">	
+	<div id="menu-outer">
+		<ul id="menu">
+			<li>
+				<div>
+					<div>File</div>
+				</div>
+				<ul>
+					<li><a href="?new">New</a></li>
+					<li><a href="?open">Open</a></li>
+					<li><a href="?download">Download As...</a></li>
+				</ul>
+			</li>
+			<li>
+				<div >
+					<div>Edit</div>
+				</div>
+				<ul>
+					<li><a href="?clear">Clear Canvas</a></li>
+				</ul>
+			</li>
+			<li>
+				<div >
+					<div>View</div>
+				</div>
+				<ul>
+					<li><a href="?zoomout">Zoom Out</a></li>
+					<li><a href="?zoomin">Zoom In</a></li>
+				</ul>
+			</li>
+			<li>
+				<div>
+					<div>Settings</div>
+				</div>
+				<ul>
+					<li><a href="?gridsize">Grid Size</a></li>
+					<li><a href="?snapping">Snapping</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+				
+	<div id="toolBox">
+		<div id="tools">
+			<div id="pointerTool" class="tool">
+				<div class="toolInner">
+					<img title="select tool" src="content/ui/pointer_icon.gif"/>
+				</div>
+			</div>
+			<div id="rectTool" class="tool">
+				<img title="rectangle tool" src="content/ui/square_icon.gif"/>
+			</div>
+			<div id="pointTool" class="tool">
+				<img title="point tool" src="content/ui/point_icon.gif"/>
+			</div>
+			<div id="lineTool" class="tool">
+				<img title="line tool" src="content/ui/line_icon.gif"/>
+			</div>
+			<div id="circleTool" class="tool">
+				<img title="circle tool" src="content/ui/circle_icon.gif"/>
+			</div>
+			<div id="gridTool" class="tool">
+				<div class="toolInner">
+					Grid:<input id="ckbxShowGrid" 
+					type="checkbox" value="showGrid"/>
+				</div>
+			</div>
+			<div id="snapTool" class="tool">
+				<div class="toolInner">
+					Snap:<input id="ckbxSnapGrid" 
+					type="checkbox" value="showGrid"/>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="canvasTabContent">
+				
+		<div id="workArea">
+			<div id="canvasContainer">
+				<div id="mousePosition">x=? y=?</div>
+				<canvas id="canvas1" width="600" height="600" >
+					<div id="canvasNotSupportedMsg">
+					Canvas is not supported on this browser or in this mode
+					</div>
+				</canvas>
+			</div>
+		</div>
+	</div>
+			
+</div>

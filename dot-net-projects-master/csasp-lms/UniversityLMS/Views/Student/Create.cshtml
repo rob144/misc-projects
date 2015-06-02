@@ -1,0 +1,62 @@
+﻿@model UniversityLMS.Models.Student
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Student</h2>
+
+<div>
+    <div class="editor-label">
+        <label for="file">Photo file</label>
+    </div>
+    <div class="editor-field">
+         @Html.EditorFor(model => model.Photo)
+    </div>
+</div>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+
+        <div class="editor-fields-section">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FirstMidName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.FirstMidName)
+                @Html.ValidationMessageFor(model => model.FirstMidName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.LastName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.LastName)
+                @Html.ValidationMessageFor(model => model.LastName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.EmailAddress)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.EmailAddress)
+                @Html.ValidationMessageFor(model => model.EmailAddress)
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <input type="submit" id="save-student" class="button" value="Create" />
+             @Html.ActionLink("Back to List", "Index")
+        </div>
+
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

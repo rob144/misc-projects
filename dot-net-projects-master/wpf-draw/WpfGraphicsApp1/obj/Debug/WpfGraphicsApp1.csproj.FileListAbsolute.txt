@@ -1,0 +1,14 @@
+C:\dev\WpfGraphicsApp1\WpfGraphicsApp1\bin\Debug\WpfGraphicsApp1.exe.config
+C:\dev\WpfGraphicsApp1\WpfGraphicsApp1\bin\Debug\WpfGraphicsApp1.exe
+C:\dev\WpfGraphicsApp1\WpfGraphicsApp1\bin\Debug\WpfGraphicsApp1.pdb
+C:\dev\WpfGraphicsApp1\WpfGraphicsApp1\obj\Debug\WpfGraphicsApp1.csprojResolveAssemblyReference.cache
+C:\dev\WpfGraphicsApp1\WpfGraphicsApp1\obj\Debug\MainWindow.baml
+C:\dev\WpfGraphicsApp1\WpfGraphicsApp1\obj\Debug\MainWindow.g.cs
+C:\dev\WpfGraphicsApp1\WpfGraphicsApp1\obj\Debug\App.g.cs
+C:\dev\WpfGraphicsApp1\WpfGraphicsApp1\obj\Debug\WpfGraphicsApp1_MarkupCompile.cache
+C:\dev\WpfGraphicsApp1\WpfGraphicsApp1\obj\Debug\WpfGraphicsApp1.g.resources
+C:\dev\WpfGraphicsApp1\WpfGraphicsApp1\obj\Debug\WpfGraphicsApp1.Properties.Resources.resources
+C:\dev\WpfGraphicsApp1\WpfGraphicsApp1\obj\Debug\WpfGraphicsApp1.csproj.GenerateResource.Cache
+C:\dev\WpfGraphicsApp1\WpfGraphicsApp1\obj\Debug\WpfGraphicsApp1.exe
+C:\dev\WpfGraphicsApp1\WpfGraphicsApp1\obj\Debug\WpfGraphicsApp1.pdb
+C:\dev\WpfGraphicsApp1\WpfGraphicsApp1\obj\Debug\WpfGraphicsApp1_MarkupCompile.lref

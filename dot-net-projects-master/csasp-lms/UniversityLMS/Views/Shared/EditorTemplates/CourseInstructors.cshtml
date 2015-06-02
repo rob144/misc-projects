@@ -1,0 +1,83 @@
+﻿@model IEnumerable<UniversityLMS.Models.Instructor>
+@using UniversityLMS.Models
+
+<div id="unassigned-instructors">
+    <label id="label-unassigned-instructors">Unassigned</label>
+    <select multiple id="select-course-instructors" size="8">
+        @{
+            foreach(Instructor item in ViewBag.instructors){
+                if(Model != null) {
+                    if(!Model.Contains(item)) {
+                        @:<option value="@item.InstructorID">@item.FullName()</option>  
+                    }
+                }else{
+                    @:<option value="@item.InstructorID">@item.FullName()</option> 
+                }
+            }
+        } 
+    </select>
+</div>
+                    
+<div id="add-remove-instructors">
+    <input type="button" id="instructors-add" value=">"/>
+    <input type="button" id="instructors-remove" value="<"/>
+</div>
+                    
+<div id="assigned-instructors">
+    <label id="label-assigned-instructors">Assigned</label>
+    <select multiple id="select-course-instructors-added" size="8">
+        @{
+            if(Model != null){
+                try{
+                    foreach(Instructor item in Model){
+                        @:<option value="@item.InstructorID">@item.FullName()</option>
+                    }
+                } catch (NullReferenceException ex){
+                    //No items assigned
+                }
+            }  
+        }
+    </select>
+    <input type="hidden" id="Instructors" name="Instructors" value="" />
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#instructors-add").click(function () {
+            switchSelectOption("select-course-instructors",
+                "select-course-instructors-added");
+        });
+
+        $("#instructors-remove").click(function () {
+            switchSelectOption("select-course-instructors-added",
+                "select-course-instructors");
+        });
+
+        function switchSelectOption(idSelectFrom, idSelectTo) {
+
+            var s1 = $('#' + idSelectFrom);
+            var s2 = $('#' + idSelectTo);
+            var val = s1.find(":selected").val();
+
+            if (s2.find('[value="' + val + '"]').length <= 0) {
+                s2.append($("<option></option>")
+                    .attr("value", val)
+                    .text(s1.find(":selected").text())
+                );
+            }
+
+            s1.find(":selected").remove();
+        };
+
+        $("#submit").click(function () {
+            var input = $("#Instructors");
+            input.val("");
+
+            $('#select-course-instructors-added').find('option').each(function (index) {
+                if (index >= 1) input.val(input.val() + ",");
+                input.val(input.val() + $(this).val());
+            });
+        });
+    });
+</script>

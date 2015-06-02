@@ -1,0 +1,73 @@
+﻿<%@ Master Language="VB" AutoEventWireup="true" CodeBehind="Site.master.vb" Inherits="CRMSystem.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head runat="server">
+        <meta charset="utf-8" />
+        <title><%: Page.Title %>Wizard Wealth</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link rel="stylesheet" type="text/css" href="~/Content/site.css">
+        <meta name="viewport" content="width=device-width" />
+        <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+    </head>
+
+    <body>
+       
+        <div id="header" class="content-wrapper">
+            <div id="header-inner">
+
+                <div class="site-titles">
+                    <h1 class="site-title">
+                        <a href="/">Wizard Wealth Management</a><br />
+                    </h1>
+                    <h2 class="site-sub-title">
+                        <a href="/">Customer Support System</a>
+                    </h2>
+                </div>
+
+                <script runat="server">
+                    Function getUser() As User
+                        Dim user As new User()
+                        Try
+                            user = DBHelper.getUser(Session("UserID"))
+                        Catch ex As NullReferenceException
+                            'No user set
+                        End Try
+                        Return user
+                    End Function
+                </script>
+                <div id="current-user">
+                    <% Dim user As User = getUser() %>
+                    <% If Not user.UserID = -1 Then %>
+                        <div>
+                            <form method="post" action="/Login">
+                                <input type="hidden" name="action" value="logout" />
+                                <img id="login-control-user-icon" alt="user icon" src="/Content/user-icon-30.jpg" />
+                                <div id="login-control-username">
+                                    <% Response.Write(user.FirstMidName) %>
+                                    <br />(<% Response.Write(user.Role)%> User) 
+                                </div>
+                                <input id="logoutAction" class="logoutAction" type="submit" value="Sign out" />
+                            </form>
+                        </div>
+                   <% End If %>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="main" class="content-wrapper">
+            <div id="main-inner">
+                <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+                <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+            </div>
+        </div>
+        
+        <div id="footer" class="content-wrapper">
+            <div id="footer-inner">
+                &copy;<%: DateTime.Now.Year %> - Wizard Wealth CRM - Robin Dunn
+            </div>
+        </div>
+    </body>
+</html>

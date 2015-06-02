@@ -1,0 +1,10 @@
+﻿http://msdn.microsoft.com/en-us/library/ms752063(v=vs.110).aspx
+http://www.flaticon.com/free-icon/pencil-draw_3702
+http://social.msdn.microsoft.com/Forums/vstudio/en-US/59f6b75d-b392-42a6-a9bb-e959f237f70e/toolbar-vertical-how-to-do-it?forum=wpf
+http://www.wpf-tutorial.com/common-interface-controls/toolbar-control/
+http://www.wpf-tutorial.com/commands/using-commands/
+http://msdn.microsoft.com/en-us/library/system.windows.controls.primitives.popup.placementrectangle(v=vs.110).aspx
+http://blogs.msdn.com/b/jaimer/archive/2007/07/12/drag-drop-in-wpf-explained-end-to-end.aspx
+
+//To make use of the z-index property I could use a canvas to draw the entire user interface or some of it?
+http://stackoverflow.com/questions/5450985/how-to-make-overlay-control-above-all-other-controls

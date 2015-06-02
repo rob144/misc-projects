@@ -1,0 +1,692 @@
+﻿html {
+    background-color: #e2e2e2;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fff;
+    border-top: solid 10px #000;
+    color: #333;
+    font-size: 10pt;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #333;
+    outline: none;
+    padding:0;
+    text-decoration: underline;
+}
+
+    a:link, a:visited,
+    a:active, a:hover {
+        color: #333;
+    }
+
+    a:hover {
+        background-color: #c7d1d6;
+    }
+
+header, footer, hgroup,
+nav, section {
+    display: block;
+}
+
+mark {
+    background-color: #a6dbed;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.clear-fix:after {
+    content: ".";
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+    color: #000;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 14pt;
+    margin:10px 0 20px 0;
+    padding:0 0 10px 0;
+    font-weight:normal;
+    border-bottom:1px solid #c9c9c9;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+    h5 a:link, h5 a:visited, h5 a:active {
+        padding: 0;
+        text-decoration: none;
+    }
+
+
+/* ******************************************************************
+  Main layout
+*********************************************************************/
+.content-wrapper {
+    margin: 0 auto;
+    max-width: 960px;
+}
+
+#body {
+    background-color: #efeeef;
+    clear: both;
+    padding-bottom: 35px;
+}
+
+    .main-content {
+        padding-left: 10px;
+        padding-top: 30px;
+    }
+
+header .content-wrapper {
+    padding-top: 20px; 
+}
+
+footer {
+    clear: both;
+    background-color: #e2e2e2;
+    font-size: .8em;
+    height: 100px;
+}
+
+
+/* site title
+----------------------------------------------------------*/
+.site-title {
+    float:left;
+    color: #c8c8c8;
+    font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
+    font-size: 2.3em;
+    margin: 0;
+}
+
+.site-title a, .site-title a:hover, .site-title a:active {
+    background: none;
+    color: #c8c8c8;
+    outline: none;
+    text-decoration: none;
+}
+
+
+/* ******************************************************************
+  Menu 
+*********************************************************************/
+ul#menu {
+    width:400px;
+    float:left;
+    margin:0 0 0 60px;
+    padding:0;
+    font-size: 1.3em;
+    font-weight: 600;
+    text-align: right;
+    line-height:1;
+}
+
+    ul#menu li {
+        display: inline-block;
+        list-style: none;
+        margin:0 0 0 20px;
+        padding:0;
+    }
+
+        ul#menu li a {
+            float:left;
+            line-height:1;
+            background: none;
+            color: #999;
+            text-decoration: none;
+        }
+
+        ul#menu li a:hover {
+            color: #333;
+            text-decoration: none;
+        }
+
+
+/************************************************************
+    LoginControl view 
+************************************************************/
+
+#logoutAction, #loginAction {
+    float:right;
+    text-align:right;
+    font-size:9pt;
+    margin:0;
+    padding:0;
+    background-color:#fff;
+    border:none;
+    text-decoration:underline;
+    color:blue;
+    cursor:pointer;
+}
+
+.login-control {
+    font-size:9pt;
+    float:right;
+    width:250px;
+    height:60px;
+    margin:0;
+    padding:0;
+    text-align:right;
+}
+
+.login-control input {
+    font-size: 9pt;
+}
+
+#login-control-user-icon {
+    display:block;
+    float:right;   
+    margin:0 0 0 8px;
+}
+
+#login-control-username {
+    float:right;   
+    width:80%;
+}
+
+/***********************************************************
+    Login view
+************************************************************/
+
+.loginFormContainer {
+    width:340px;
+    margin:20px auto 0 auto;
+    border:1px solid #c8c8c8;
+}
+
+#loginFormTitle {
+    padding:10px;
+    margin:0;
+    background-color: #fff;
+}
+
+#loginFormFields {
+    padding:10px;
+}
+
+div.login-row {
+    height:30px;
+    margin:0 0 15px 0;
+}
+
+#login-label-username, #login-label-password {
+    float:left;
+    width:80px;
+}
+
+#login-label-username > label:after,
+login-label-password > label:after {
+    content: " : "
+}
+
+
+#login-field-username, #login-field-password {
+    float:right;
+    width:220px;
+    text-align:right;
+}
+
+#login-field-username #UserName, 
+#login-field-password #Password {
+    width:200px;
+    float:right;
+}
+
+.loginFailed {
+    text-align:center;
+    color:red;
+}
+
+#login-button {
+    margin:10px 0 10px 10px;
+}
+
+/***********************************************************
+    Page elements
+************************************************************/
+
+.featured {
+    background-color: #fff;
+}
+
+    .featured .content-wrapper {
+        background-color: #7ac0da;
+        background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: -o-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7ac0da), color-stop(1, #a4d4e6));
+        background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        color: #3e5667;
+        padding: 20px 40px 30px 40px;
+    }
+
+        .featured hgroup.title h1, .featured hgroup.title h2 {
+            color: #fff;
+        }
+
+        .featured p {
+            font-size: 1.1em;
+        }
+
+/* ******************************************************************
+  General Forms 
+*********************************************************************/
+form {
+    clear:both;
+}
+
+fieldset {
+    border: none;
+    margin: 10px 0 20px 0;
+    padding: 0;
+}
+
+    fieldset legend {
+        display: none;
+    }
+
+label {
+    display: block;
+    font-size: 10pt;
+    text-align:right;
+}
+
+label.checkbox {
+    display: inline;
+}
+
+textarea {
+    border: 1px solid #e2e2e2;
+    background: #fff;
+    color: #333;
+    font-size: 1.2em;
+    margin: 0;
+    padding: 5px;
+    width: 300px;
+}
+
+textarea {
+    font-family: inherit;
+    width: 500px;
+}
+
+select {
+    margin:0;
+}
+
+input:focus, textarea:focus {
+    border: 1px solid #7ac0da;
+}
+
+input[type="text"], 
+input[type="number"], 
+input[type="password"], 
+input[type="email"], 
+input[type="datetime"] {
+    margin:0;
+    padding:6px 5px 5px 5px;
+    border-radius:6px;
+    border:1px solid #C9C9C9;
+}
+
+input[type="checkbox"] {
+    background: transparent;
+    border: inherit;
+    width: auto;
+}
+
+input[type="text"]:disabled
+{
+    background:#EDEDED;
+}
+
+.editor-fields-section {
+    overflow :auto;
+    margin:0 0 20px 0;
+    padding:0 0 10px 0;
+}
+
+.editor-labels-container {
+    float:left;
+    width:30%;
+    clear:left;
+}
+
+.editor-fields-container {
+    float:left;
+    width:38%;
+}
+
+.editor-row {
+    height:40px;
+}
+
+.editor-label {
+    float:left;
+    clear:left;
+    text-align:right;
+    width: 30%;
+    height: 30px;
+    margin: 8px 0 0 0;
+    padding:5px 10px 0 0;
+}
+
+.editor-label > label:after {
+    content: " : "
+}
+
+.editor-field {
+    float:left;
+    clear:right;
+    width:68%;
+    margin: 8px 0 0 0;
+    text-align:left;
+}
+
+.editor-field input[type="text"] {
+    width:300px;  
+}
+
+input[type="file"] {
+    margin:0;
+    padding:0;
+}
+
+.editor-field-image-upload {
+    overflow:auto;  
+    margin:8px 0 0 0;
+    padding:4px 0 0 0;
+}
+
+/* Remove the HTML5 up/down spinners for number inputs */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.upload-iframe {
+    width:200px;
+    height:25px;
+    margin:10px 0 0 0;
+    padding:5px;
+    overflow:hidden;
+    border:1px solid #e2e2e2;
+    background-color:#fff;
+}
+
+.button {
+   border-top: 1px solid #96d1f8;
+   background: #65a9d7;
+   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+   background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+   background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+   background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+   background: -o-linear-gradient(top, #3e779d, #65a9d7);
+   padding: 5px 10px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 14px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+}
+
+.button:hover {
+   border-top-color: #28597a;
+   background: #28597a;
+   color: #ccc;
+}
+
+.button:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+}
+
+.form-actions {
+    margin:10px 0 0 30%;
+}
+
+.form-actions input[type="submit"] {
+    margin:0 10px 0 10px;
+}
+
+/* ******************************************************************
+  View/Edit Course 
+*********************************************************************/
+
+#unassigned-instructors {
+    overflow:auto;
+    float:left;
+}
+
+#select-course-instructors, #assigned-instructors {
+    min-width:220px;
+    float:left;
+    width:220px;
+}
+
+#label-unassigned-instructors, #label-assigned-instructors {
+    display:block;
+    margin:0 0 5px 0;
+    text-align:left;
+}
+
+#select-course-instructors-added {
+    min-width:220px;
+    float:left;
+}
+
+#add-remove-instructors {
+    width:40px;
+    height:140px;
+    float:left;
+    margin:0 5px 0 5px;
+}
+
+#instructors-add {
+    display:block;
+    width:30px;
+    margin:60px auto 0 auto;
+}
+
+#instructors-remove {
+    display:block;
+    width:30px;
+    margin:5px auto 0 auto;
+}
+
+#edit-course-instructors {
+    padding:5px 0 0 0;
+}
+
+#edit-course-instructors select {
+    width:200px;
+}
+
+/* ******************************************************************
+  Display views 
+*********************************************************************/
+
+.display-row {
+    height:20px;
+}
+
+.display-label {
+    float:left;
+    clear:both;
+    min-width:150px;
+}
+
+.display-field {
+    float:left;
+}
+
+/* ******************************************************************
+  Info and errors 
+*********************************************************************/
+.selectedrow 
+{ 
+    background-color: #a4d4e6; 
+}
+
+.message-info {
+    border: 1px solid;
+    clear: both;
+    padding: 10px 20px;
+}
+
+.message-error {
+    clear: both;
+    color: #e80c4d;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+}
+
+.message-success {
+    color: #7ac0da;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+}
+
+.error {
+    color: #e80c4d;
+}
+
+/* ******************************************************************
+  Validation helpers 
+*********************************************************************/
+.field-validation-error {
+    color: #e80c4d;
+    font-weight: bold;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #e80c4d;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #e80c4d;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+
+/* ******************************************************************
+    tables 
+*********************************************************************/
+table {
+    border-spacing: 0;
+    margin-top: 0.75em;
+    border: 1px solid #639AC6;
+    border-radius:6px;
+}
+
+th {
+    font-size: 1.2em;
+    text-align: left;
+    border: none 0px;
+    padding:10px;
+}
+
+    th a {
+        display: block;
+        position: relative;
+    }
+
+    th a:link, th a:visited, th a:active, th a:hover {
+        color: #333;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0;
+    }
+
+    th a:hover {
+        color: #000;
+    }
+
+    th.asc a, th.desc a {
+        margin-right: .75em;
+    }
+
+    th.asc a:after, th.desc a:after {
+        display: block;
+        position: absolute;
+        right: 0em;
+        top: 0;
+        font-size: 0.75em;
+    }
+
+    th.asc a:after {
+        content: '▲';
+    }
+
+    th.desc a:after {
+        content: '▼';
+    }
+
+td {
+    padding: 0 10px 10px 10px;
+    border: 0 none;
+}
+
+tr {
+    padding: 10px 10px 0 10px;
+}
