@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>MF UI TEST</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>  
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="main.css">
+    </head>
+
+    <body>
+        <div class="page-wrapper">
+            <h1>MF UI TEST</h1>
+
+            <div ng-app="MFApp">
+
+                <div ng-controller="MFController">
+
+                    <a href='#' ng-click='toggleChildren($event)'>show/hide children</a>
+
+                    <table id='tbl-limits'>
+                        <tr>
+                            <th><a href="#" ng-click="sortType = 'Level';sortReverse = !sortReverse">Level</a></th>
+                            <th><a href="#" ng-click="sortType = 'Admin';sortReverse = !sortReverse">Admin</a></th>
+                            <th><a href="#" ng-click="sortType = 'Group';sortReverse = !sortReverse">Group</a></th>
+                            <th><a href="#" ng-click="sortType = 'LimitID';sortReverse = !sortReverse">Limit ID</a></th>
+                            <th><a href="#" ng-click="sortType = 'Dsl';sortReverse = !sortReverse">Dsl</a></th> 
+                            <th><a href="#" ng-click="sortType = 'DslInherited';sortReverse = !sortReverse">Dsl Inher.</a></th>
+                            <th><a href="#" ng-click="sortType = 'DslUsage';sortReverse = !sortReverse">Dsl Usage</a></th>
+                            <th><a href="#" ng-click="sortType = 'Feed';sortReverse = !sortReverse">Feed</a></th>
+                            <th><a href="#" ng-click="sortType = 'Market';sortReverse = !sortReverse">Market</a></th>
+                            <th><a href="#" ng-click="sortType = 'Nop';sortReverse = !sortReverse">Nop</a></th>
+                            <th><a href="#" ng-click="sortType = 'NopInherited';sortReverse = !sortReverse">Nop Inher.</a></th>
+                            <th><a href="#" ng-click="sortType = 'NopUsage';sortReverse = !sortReverse">Nop Usage</a></th>
+                            <th><a href="#" ng-click="sortType = 'Pending';sortReverse = !sortReverse">Pending</a></th>
+                            <th><a href="#" ng-click="sortType = 'PendingInherited';sortReverse = !sortReverse">Pending Inher.</a></th>
+                            <th><a href="#" ng-click="sortType = 'PendingUsage';sortReverse = !sortReverse">Pending Usage</a></th>
+                            <th><a href="#" ng-click="sortType = 'Position';sortReverse = !sortReverse">Pos.</a></th>
+                            <th><a href="#" ng-click="sortType = 'PositionInherited';sortReverse = !sortReverse">Pos. Inher.</a></th>
+                            <th><a href="#" ng-click="sortType = 'PositionUsage';sortReverse = !sortReverse">Pos. Usage</a></th>
+                            <th><a href="#" ng-click="sortType = 'Single';sortReverse = !sortReverse">Single</a></th>
+                            <th><a href="#" ng-click="sortType = 'Throttle';sortReverse = !sortReverse">Throt.</a></th>
+                        </tr>
+                        <tr class='limit-row' ng-repeat="limit in limits | orderBy:sortType:sortReverse" data-level='{{limit.Level}}' after-repeat-directive>
+                            <td data-name='Level'>{{limit.Level}}</td>
+                            <td data-name='Admin'>{{limit.Admin}}</td>
+                            <td data-name='Group'>{{limit.Group}}</td>
+                            <td data-name='LimitID'>{{limit.LimitID}}</td>
+                            <td data-name='Dsl'>{{limit.Dsl}}</td>
+                            <td data-name='DslInherited'>{{limit.DslInherited}}</td>
+                            <td data-name='DslUsage'>{{limit.DslUsage}}</td>
+                            <td data-name='Feed'>{{limit.Feed}}</td>
+                            <td data-name='Market'>{{limit.Market}}</td>
+                            <td data-name='Nop'>{{limit.Nop}}</td>
+                            <td data-name='NopInherited'>{{limit.NopInherited}}</td>
+                            <td data-name='NopUsage'>{{limit.NopUsage}}</td>
+                            <td data-name='Pending'>{{limit.Pending}}</td>
+                            <td data-name='PendingInherited'>{{limit.PendingInherited}}</td>
+                            <td data-name='PendingUsage'>{{limit.PendingUsage}}</td>
+                            <td data-name='Position'>{{limit.Position}}</td>
+                            <td data-name='PositionInherited'>{{limit.PositionInherited}}</td>
+                            <td data-name='PositionUsage'>{{limit.PositionUsage}}</td>
+                            <td data-name='Single'>{{limit.Single}}</td>
+                            <td data-name='Throttle'>{{limit.Throttle}}</td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+        <script type='text/javascript' >
+
+            var urlArr = window.location.href.split("/");
+            var riskUrl = urlArr[0] + "//" + urlArr[2] + "/riskservice.php";
+
+            function checkNDA(v, nv) {
+                if (v == 'NDA')
+                    return nv;
+                return numeral(v).format('0,0 a');
+            }
+
+            function checkNDAPct(l, v, nv, vu) {
+                if (l[v] == 'NDA') {
+                    l[v + "Usage"] = nv;
+                    l[v + "Percent"] = '';
+                    return nv;
+                }
+                var vp = vu / l[v];
+                l[v + "Percent"] = numeral((vu / l[v])).format('0,0.000%');
+                l[v + "Usage"] = numeral(vu).format('0,0.00');
+                return numeral(l[v]).format('0,0 a');
+            }
+
+            function getLimitData(obj, treeLevel, arrLimits) {
+
+                if(!('children' in obj)){
+                    return;
+                }
+
+                $.each(obj["children"], function(k, limit) {
+                    
+                    if (k == 'default_factory' || Object.keys(limit).length < 20)
+                        return;
+
+                    limit['Level'] = treeLevel;
+                    limit['ParentID'] = obj.LimitID;
+
+                    if(!limit.hasOwnProperty['ThrottleInherited']){
+                        limit["ThrottleInherited"]  = '-';
+                    }
+
+                    if(!limit.hasOwnProperty['ThrottleUsage']){
+                        limit["ThrottleUsage"]      = '-';
+                    }
+
+                    limit["maxDSLDate"] = '';
+
+                    if (Object.keys(limit).length == 3) {   /* No limits for this user/level yet */
+                        limit["LimitID"]            = '';
+                        limit["Admin"]              = '';
+                        limit["Group"]              = '';
+                        limit["DslUsage"]           = '-';
+                        limit["DslTotalUsage"]      = '-';
+                        limit["DslPercent"]         = '-';
+                        limit["DslInherited"]       = '-';
+                        limit["Nop"]                = '-';
+                        limit["NopPercent"]         = '-';
+                        limit["NopUsage"]           = '-';
+                        limit["NopInherited"]       = '-';
+                        limit["Dsl"]                = '-';
+                        limit["Pending"]            = '-';
+                        limit["PendingPercent"]     = '-';
+                        limit["PendingInherited"]   = '-';
+                        limit["PendingUsage"]       = '-';
+                        limit["Throttle"]           = '-';
+                        limit["ThrottleInherited"]  = '-';
+                        limit["ThrottleUsage"]      = '-';
+                        limit["Single"]             = '-';
+                        arrLimits.push(limit);
+                        return;
+                    }
+
+                    if (limit.DslUsage == 'NDA') {
+                        limit.DslUsage = '-'
+                        limit["DslTotalUsage"]  = '-';
+                        limit["DslPercent"]     = ' '
+                    } else if (limit.DslUsage == '0') {
+                        limit["DslTotalUsage"]  = '0';
+                        limit["DslPercent"]     = '0%';
+                    } else if (limit.DslUsage !== null && typeof(limit.DslUsage) == "object"){
+                        var str = '';
+                        for(prop in limit.DslUsage) {
+                            str += prop;
+                        }
+                        limit.DslUsage = str;
+                    } else {
+                        
+                        var totalDSL    = 0;
+                        limit["maxDSL"] = 0;
+                        
+                        $.each(limit.DslUsage, function(key, val) {
+                            if (key == 'Cash')
+                                return;
+                            totalDSL = totalDSL + val;
+                            if (val > limit["maxDSL"]) {
+                                limit["maxDSL"] = val;
+                                limit["maxDSLDate"] = "<br>(" + key + ")";
+                            }
+                        });
+                        var dp = (limit["maxDSL"] / limit["Dsl"]);
+                        limit["DslTotalUsage"] = numeral(limit["maxDSL"]).format('0,0.00');
+                        limit["DslPercent"] = numeral(dp).format('0,0.000%');
+                    }
+                    
+                    limit["Nop"]                = checkNDAPct(  limit, "Nop",       '-', limit["NopUsage"]);
+                    limit["Dsl"]                = checkNDA(     limit["Dsl"],       '-');
+                    limit["DslInherited"]       = checkNDA(     limit["DslInherited"],       '-');
+                    limit["PendingInherited"]   = checkNDA(     limit["PendingInherited"],       '-');
+                    limit["Pending"]            = checkNDAPct(  limit, "Pending",   '-', limit["PendingUsage"]);
+                    limit["Throttle"]           = checkNDA(     limit["Throttle"],  '-');
+                    limit["Single"]             = checkNDA(     limit["Single"],    '-');
+                    limit["Position"]             = checkNDA(     limit["Position"],    '-');
+                    limit["PositionInherited"]             = checkNDA(     limit["PositionInherited"],    '-');
+                    limit["PositionUsage"]             = checkNDA(     limit["PositionUsage"],    '-');
+                    
+                    arrLimits.push(limit);
+                    
+                    if (limit.children)
+                        getLimitData(limit, treeLevel + 1, arrLimits);    
+                });
+
+                return arrLimits;
+            }
+
+
+            /* SETUP THE ANGULAR JS APP */
+            var app = angular.module('MFApp', [])
+                .controller('MFController', function($scope, $http) {
+                    
+                    $scope.limits       = [];
+                    $scope.sortType     = 'Group';//Default sorting
+                    $scope.sortReverse  = false; 
+
+                    $scope.loadLimits = function() {
+                        var httpRequest = $http({
+                            method: 'GET',
+                            url: riskUrl
+                        }).success( 
+                            function(data, status) {
+                                $scope.limits = getLimitData(data['userrisk']['MFTest'], 0, []);
+                            }
+                        );
+                    };
+
+                    $scope.toggleChildren = function(event){
+                        //Show/hide all the child rows in the table
+                        $('tr.limit-row:not([data-level="0"])').toggle();
+                    };
+
+                    /* TODO: try to use a custom sort order to show children beneath parents
+                    something like this... */
+                    $scope.familyOrder = function(){
+                        var newLimits = [];
+                        for(var i=0; i < $scope.limits.length; i++){
+                            if($scope.limits[i].Level == 0){
+                                newLimits.push($scope.limits[i]);
+                                for(var j=0; j < $scope.limits.length; j++){
+                                    if($scope.limits[j].ParentID == $scope.limits[i].LimitID){
+                                        newLimits.push($scope.limits[j]);
+                                    }
+                                }
+                            }
+                        }
+                        $scope.limits = newLimits;
+                    };
+
+                    angular.element(document).ready(function () {
+                        $scope.loadLimits();
+                    });
+                })
+                .directive('afterRepeatDirective', function() {
+                    return function(scope, element, attrs) {
+                        if (scope.$last){
+                            /* Can do some work on table here as it has
+                            finished being rendered. */
+                        }
+                    };
+                });
+        </script>
+
+    </body>
+</html>
