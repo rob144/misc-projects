@@ -1,0 +1,4 @@
+lib/*.jar
+src/main/java/
+src/main/java/com/rd/
+target/classes/
