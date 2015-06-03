@@ -1,0 +1,30 @@
+#!/bin/bash
+cpfile=$1
+javafile=$2
+destdir=$3
+lines=()
+
+destdir=$(echo "$destdir" | sed -e 's/^ *//' -e 's/ *$//')
+if [ ! -z "$destdir" ]; then
+    destdir=$(echo "-d $destdir")
+fi
+
+#Read classpaths from text file
+while read line
+do
+    lines+=($line)
+done < $cpfile
+
+finalpath=
+for line in "${lines[@]}"
+do
+    #If line not blank add path to classpath
+    if [ ! -z "$(echo $line | tr -d ' ')" ]; then
+        if [ ! -z "$(echo $finalpath | tr -d ' ')" ]; then 
+            finalpath+=':'
+        fi
+        finalpath+="$line"
+    fi
+done
+echo $finalpath
+result=$(echo "`javac -cp $finalpath $destdir $javafile`")

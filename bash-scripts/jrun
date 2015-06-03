@@ -1,0 +1,26 @@
+#!/bin/bash
+args=("$@")
+cpfile=${args[0]}
+javaclass=${args[1]}
+param=${args[2]}
+lines=()
+
+#Read classpaths from text file
+while read line
+do
+    lines+=($line)
+done < $cpfile
+
+classpath=
+for i in "${lines[@]}"
+do
+    check=$(echo "$i" | tr -d ' ')
+    if [[ ! -z "$check" ]]; then
+        temppath=$(echo $i | tr ' ' ':')
+        classpath+=$temppath
+        if [[ ! "$temppath" =~ ":" ]]; then
+            classpath+=':'
+        fi
+    fi
+done
+echo "`java -cp $classpath $javaclass $param`"
