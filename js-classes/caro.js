@@ -21,10 +21,21 @@ function Caro(boxElem){
 }
 
 Caro.prototype.resizeUi = function(forceScrollBar){
-    //TODO: set the stage width big enough to contain all the slides
-    //TODO: set the width of the slides to match caro window width
-    //$caroStage.width($slides.width() * $slides.length + 10000);
-    //$slides.width( $caroWindow.width() );
+    
+    var caro = this;
+    var slides = caro.getSlides();
+    var windowWidth = caro.caroWindow.width();
+
+    //Make the stage width big enough to contain all the slides
+    this.caroStage.width(slides.length * caro.caroWindow.width());
+    
+    //Aet the width of the slides to match caro window width
+    //I.e. show one slide in the caro window
+    slides.width(windowWidth);
+}
+
+Caro.prototype.getSlides = function(){
+    return this.caroStage.find('.caro-item');
 }
 
 Caro.prototype.addSlide = function(slideHtml){
@@ -47,5 +58,10 @@ Caro.prototype.init = function(slideHtml){
     caro.caroStage.find('div').each(function(i, elem){
         $(elem).remove();
         caro.addSlide($(elem).html());
-    });;
+        caro.resizeUi();
+    });
+    $(window).resize(function(){//TODO: fix this to work with multiple caro instances
+        clearTimeout(this.id);
+        this.id = setTimeout(function(){ caro.resizeUi(true); }, 300);
+    })
 }
