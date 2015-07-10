@@ -1,5 +1,6 @@
 function Caro(boxElem){
     
+    this.name = boxElem;
     this.caroBox = $(boxElem);
     this.CARO_INFO = { 
         mousedown: false,
@@ -27,7 +28,7 @@ Caro.prototype.resizeUi = function(forceScrollBar){
     var windowWidth = caro.caroWindow.width();
 
     //Make the stage width big enough to contain all the slides
-    this.caroStage.width(slides.length * caro.caroWindow.width());
+    caro.caroStage.width(slides.length * caro.caroWindow.width());
     
     //Aet the width of the slides to match caro window width
     //I.e. show one slide in the caro window
@@ -54,14 +55,25 @@ Caro.prototype.getLast = function(){
 }
 
 Caro.prototype.init = function(slideHtml){
+    
     var caro = this;
+    
     caro.caroStage.find('div').each(function(i, elem){
         $(elem).remove();
         caro.addSlide($(elem).html());
         caro.resizeUi();
     });
-    $(window).resize(function(){//TODO: fix this to work with multiple caro instances
-        clearTimeout(this.id);
-        this.id = setTimeout(function(){ caro.resizeUi(true); }, 300);
-    })
+
+    var resizeHandler = function(caroObj){
+        clearTimeout(caroObj.timeOutId);
+        caroObj.timeOutId = setTimeout(
+            function(){ 
+                caroObj.resizeUi(true); 
+            }, 300 //Set delay to avoid many resize events.
+        );
+    }
+
+    $(window).resize(function(){
+        resizeHandler(caro);
+    });
 }
