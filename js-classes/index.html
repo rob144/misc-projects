@@ -37,10 +37,12 @@
     <script type='text/javascript'>
         var caro = ''; 
         $(document).ready(function() {
-            caroOne = new Caro('.caro-one');
-            caroOne.init();
-            caroTwo = new Caro('.caro-two');
-            caroTwo.init();
+            c1 = new Caro('.caro-one');
+            c1.init();
+            console.log(c1.getCurrentSlide().html());
+            c2 = new Caro('.caro-two');
+            c2.init();
+            console.log(c2.getCurrentSlide().html());
         });
     </script>
 
