@@ -1,6 +1,7 @@
 <html>
 
     <head>
+        <title>Caro Test</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" type="text/css" href="caro.css" />
         <script src="lib/jquery-1.11.3.js"></script>
@@ -25,7 +26,7 @@
             <div class='caro-window'>
                 <div class='caro-stage'>
                     <div>Slide ONE</div>
-                    <div>Slide TWO</div>
+                    <div><h3>Slide TWO</h3></div>
                     <div>Slide THREE</div>
                     <div>Slide FOUR</div>
                 </div>
@@ -39,10 +40,9 @@
         $(document).ready(function() {
             c1 = new Caro('.caro-one');
             c1.init();
-            console.log(c1.getCurrentSlide().html());
             c2 = new Caro('.caro-two');
             c2.init();
-            console.log(c2.getCurrentSlide().html());
+            c2.removeSlideContaining('h3');
         });
     </script>
 

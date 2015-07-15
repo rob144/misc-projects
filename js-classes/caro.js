@@ -2,12 +2,14 @@ function Caro(boxElem){
     
     var caro = this;
 
-    caro.name = boxElem;
-    caro.caroBox = $(boxElem);
-    caro.CARO_INFO = { 
-        mousedown: false,
-        callbacks: []
-    };
+    caro.name               = boxElem;
+    caro.caroBox            = $(boxElem);
+    caro.draggedSlide       = null;
+    caro.mouseupAnimation   = null;
+    caro.mouseIsDown        = false;
+    caro.startX             = null;
+    caro.trackX             = null;
+    caro.callbacks          = [];
 
     /* Add the container divs */
     if(!caro.caroBox.find('.caro-window').length){
@@ -21,6 +23,31 @@ function Caro(boxElem){
     /* Add the nav controls */
     caro.caroBox.prepend('<div class="caro-nav-btn caro-nav-next">Next</div>');
     caro.caroBox.prepend('<div class="caro-nav-btn caro-nav-prev">Prev</div>');
+}
+
+Caro.prototype.registerCallback = function(arrFuncNames, func){
+    
+    var caro = this;
+    for (var i = 0; i < arrFuncNames.length; i++) {
+        caro.callbacks.push({ 
+            funcName: arrFuncNames[i], 
+            func: func 
+        })
+    };
+}
+
+Caro.prototype.getCallback = function(funcName){
+    
+    var caro = this;
+    var func = function(){};
+    var callbacks = caro.callbacks;
+    
+    for(var i = 0; i < callbacks.length; i++){
+        if(callbacks[i].funcName.toLowerCase() == funcName.toLowerCase()){
+            func = callbacks[i].func;
+        }
+    }
+    return func;
 }
 
 Caro.prototype.resizeUi = function(forceScrollBar){
@@ -37,20 +64,32 @@ Caro.prototype.resizeUi = function(forceScrollBar){
     slides.width(windowWidth);
 }
 
+Caro.prototype.getSlide = function(slideIndex){
+    return this.caroStage.find('.caro-item').eq(slideIndex);
+}
+
 Caro.prototype.getSlides = function(){
     return this.caroStage.find('.caro-item');
 }
 
-Caro.prototype.addSlide = function(slideHtml){
-    this.caroStage.append("<div class='caro-item'>" + slideHtml + "</div>");
+Caro.prototype.getLastSlide = function(){
+    return this.caroStage.find('.caro-item:last');
 }
 
-Caro.prototype.removeSlide = function(index){
-    var caro = this;
-    if(index >= 1 && caro.caroStage.find('.caro-item:nth-child(' + index + ')').length){
-        caro.caroStage.find('.caro-item:nth-child(' + index + ')').remove();
+Caro.prototype.getTargetSlide = function(currSlide, direction){
+    
+    var currSlide = $(currSlide);
+
+    if(direction < 0 && currSlide.next().length){
+        return currSlide.next();
     }
-}
+        
+    if(direction > 0 && currSlide.prev().length){
+        return currSlide.prev();
+    }
+
+    return null;
+};
 
 Caro.prototype.getCurrentSlide = function(){
     
@@ -78,12 +117,35 @@ Caro.prototype.getCurrentSlide = function(){
     return slides.eq(targetIndex);
 }
 
-Caro.prototype.getSlide = function(slideIndex){
-    return this.caroStage.find('.caro-item').eq(slideIndex);
+Caro.prototype.addSlide = function(slideHtml){
+    this.caroStage.append("<div class='caro-item'>" + slideHtml + "</div>");
 }
 
-Caro.prototype.getLast = function(){
-    return this.caroStage.find('.caro-item:last');
+Caro.prototype.removeSlide = function(index){
+    var caro = this;
+    if(index >= 1 && caro.caroStage.find('.caro-item:nth-child(' + index + ')').length){
+        caro.caroStage.find('.caro-item:nth-child(' + index + ')').remove();
+    }
+}
+
+Caro.prototype.removeSlideContaining = function(selector){
+    
+    var caro = this;
+    var slides = caro.getSlides();
+    var targetSlides = [];
+
+    //Find and remove sides containing elements matching the selector
+    if(slides.length >= 1){
+        slides.each(function(i, elem){
+            var slide = $(elem);
+            if(slide.find(selector).length >= 1){
+                targetSlides.push(caro.getSlide(i));
+            };
+        });
+        for(var i = 0; i < targetSlides.length; i++){
+            targetSlides[i].remove();
+        }
+    }
 }
 
 Caro.prototype.nextSlide = function(){ 
@@ -141,6 +203,36 @@ Caro.prototype.animateToSlide = function(targetSlide){
     }
 };
 
+Caro.prototype.dragStage = function(pageX, currSlide){
+        
+    var caro = this;
+    var currSlide = $(currSlide);
+    var vector = pageX - caro.startX;
+    var direction = 0;
+    var distance = Math.abs(vector);
+    var newLeft = caro.caroStage.position().left + pageX - caro.trackX;
+    
+    /* If distance > 20px, slide all the way to the next or prev item */
+    if(distance > 20){
+
+        if(vector < 0) {
+            direction = -1; //Moving stage from right to left
+        }else if(vector > 0){
+            direction = 1; //Moving stage from left to right
+        }
+
+        var targetSlide = caro.getTargetSlide(currSlide, direction);
+
+        if(targetSlide !== null){
+            caro.mouseupAnimation = function(){
+                caro.animateToSlide(targetSlide);
+            }
+            caro.caroStage.css({ left: newLeft });
+            caro.trackX = pageX;
+        }
+    }
+}
+
 Caro.prototype.init = function(slideHtml){
     
     var caro = this;
@@ -170,4 +262,54 @@ Caro.prototype.init = function(slideHtml){
     caro.caroBox.find('.caro-nav-next').click(
         function(){ caro.nextSlide(); }
     );
+
+    /* Setup the touch and drag events */
+    caro.caroWindow.off('mousedown touchstart')
+                    .on('mousedown touchstart', function(event){
+
+        var dragElem = $(event.target);
+        var pageX = (event.type == 'touchstart') 
+            ? event.originalEvent.touches[0].pageX 
+            : event.pageX;
+
+        caro.mouseIsDown = true;
+        caro.startX = pageX;
+        caro.trackX = caro.startX;
+
+        if(dragElem.hasClass('caro-item') != true){
+            dragElem = dragElem.closest('.caro-item');
+        }
+        
+        caro.draggedSlide = dragElem;
+        caro.mouseupAnimation = function(){
+            caro.animateToSlide(caro.draggedSlide);
+        };
+    });
+
+    caro.caroStage.off('mousemove touchmove')
+                    .on('mousemove touchmove', function(e){
+
+        var pageX = (e.type == 'touchmove') 
+            ? e.originalEvent.touches[0].pageX 
+            : e.pageX;
+
+        if(caro.mouseIsDown){
+            caro.caroWindow.css('cursor','-webkit-grabbing');
+            caro.dragStage(pageX, $(e.target).closest('.caro-item'));
+        }else{
+            caro.caroWindow.css('cursor','default');
+        }
+    });
+
+    caro.caroWindow.off('mouseup touchend')
+                    .on('mouseup touchend', function(e){ 
+
+        caro.mouseIsDown = false; 
+        if(caro.mouseupAnimation instanceof Function){
+            caro.mouseupAnimation();
+            caro.mouseupAnimation = null;
+        };
+
+        //fixOvershoot();
+    });
 }
