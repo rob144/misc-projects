@@ -310,6 +310,7 @@ Caro.prototype.init = function(slideHtml){
             caro.mouseupAnimation = null;
         };
 
+        caro.caroWindow.css('cursor','default');
         //fixOvershoot();
     });
 }
