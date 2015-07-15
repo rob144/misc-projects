@@ -233,6 +233,43 @@ Caro.prototype.dragStage = function(pageX, currSlide){
     }
 }
 
+Caro.prototype.fixOvershoot = function(){
+    /* If the stage was dragged beyond the first or last elements,
+    animate back to boundary. */
+    var caro = this;
+
+    //Animate to the first slide
+    if(caro.caroStage.offset().left > caro.caroWindow.offset().left){
+        if(!caro.caroStage.hasClass('sliding')){
+            caro.addClass('sliding');
+            caro.animate(
+                { left: 0 },
+                300, 
+                function(){
+                    caro.caroStage.removeClass('sliding');
+                }
+            );
+        }
+    }
+
+    //Animate to the last slide
+    if(caro.caroStage.offset().left + caro.caroStage.outerWidth() 
+        < caro.caroWindow.offset().left + caro.caroWindow.outerWidth()){
+        if(!caro.caroStage.hasClass('sliding')){
+            caro.caroStage.addClass('sliding');
+            caro.caroStage.animate({ 
+                    left: "+=" + ( caro.caroWindow.offset().left 
+                    - caro.getLastSlide().offset().left + 1) 
+                },
+                300, 
+                function(){ 
+                    caro.caroStage.removeClass('sliding');
+                }
+            );
+        }
+    }
+};
+
 Caro.prototype.init = function(slideHtml){
     
     var caro = this;
@@ -311,6 +348,6 @@ Caro.prototype.init = function(slideHtml){
         };
 
         caro.caroWindow.css('cursor','default');
-        //fixOvershoot();
+        //caro.fixOvershoot();
     });
 }
