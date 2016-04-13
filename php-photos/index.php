@@ -23,59 +23,59 @@
             </form>
 
             <div id="containerPhotos">
-				<?php include 'dbaccess.php'; ?>
-				<?php
-					try {
-						$pdo = new PDO('mysql:host='.constant("host").';dbname='.constant("dbname"), 
-											constant("user"), constant("password"));
-						$qryResult = $pdo->query('SELECT * from tbl_photos');
-						
-						for($i=0; $row = $qryResult->fetch(); $i++){
-							
-							$photoId = $row['id'];
-							$description = $row['description'];
-							$fileRef = $row['file_ref'];
-							$title = $row['title'];
-							
-							$cssClass = ($i > 0 && ($i + 1) % 4 == 0 ? "photoOuterRowEnd" : "photoOuter");
-							
-							echo "
-								<div class='$cssClass'>
-									<div class='photoInner'>
-										<a href='res/photos/$fileRef' rel='lightbox' title='$title'>
-											<img class='photo' src='res/photos/$fileRef' data-lightbox='image-$photoId' />
-										</a>
-										<div class='photoControls'>
-											<a href='res/photos/$fileRef' rel='lightbox' class='photoControl' title='$description
-												<img class='photoControlIcon' src='res/ui/view.png' />
-											</a>
-											<a class='photoControl' title='edit photo' href='?action=editphoto&oid=$photoId'>
-												<img class='photoControlIcon' src='res/ui/edit.png' />
-											</a>
-											<a class='photoControl' title='download photo' href='?action=downloadphoto&oid=$photoId'>
-												<img class='photoControlIcon' src='res/ui/download.png' />
-											</a>
-											<a class='photoControl' title='delete photo' href='deletephoto.php?oid=$photoId&confirm=0'>
-												<img class='photoControlIcon' src='res/ui/delete.png' />
-											</a>
-										</div>
-									</div>
-								</div>";
-						}
-						$pdo = null;
-					} catch (PDOException $e) {
-						print "Error!: " . $e->getMessage() . "<br/>";
-						die();
-					}
-				?>
+                <?php include 'dbaccess.php'; ?>
+                <?php
+                    try {
+                        $pdo = new PDO('mysql:host='.constant("host").';dbname='.constant("dbname"), 
+                                            constant("user"), constant("password"));
+                        $qryResult = $pdo->query('SELECT * from tbl_photos');
+                        
+                        for($i=0; $row = $qryResult->fetch(); $i++){
+                            
+                            $photoId = $row['id'];
+                            $description = $row['description'];
+                            $fileRef = $row['file_ref'];
+                            $title = $row['title'];
+                            
+                            $cssClass = ($i > 0 && ($i + 1) % 4 == 0 ? "photoOuterRowEnd" : "photoOuter");
+                            
+                            echo "
+                                <div class='$cssClass'>
+                                    <div class='photoInner'>
+                                        <a href='res/photos/$fileRef' rel='lightbox' title='$title'>
+                                            <img class='photo' src='res/photos/$fileRef' data-lightbox='image-$photoId' />
+                                        </a>
+                                        <div class='photoControls'>
+                                            <a href='res/photos/$fileRef' rel='lightbox' class='photoControl' title='$description
+                                                <img class='photoControlIcon' src='res/ui/view.png' />
+                                            </a>
+                                            <a class='photoControl' title='edit photo' href='?action=editphoto&oid=$photoId'>
+                                                <img class='photoControlIcon' src='res/ui/edit.png' />
+                                            </a>
+                                            <a class='photoControl' title='download photo' href='?action=downloadphoto&oid=$photoId'>
+                                                <img class='photoControlIcon' src='res/ui/download.png' />
+                                            </a>
+                                            <a class='photoControl' title='delete photo' href='deletephoto.php?oid=$photoId&confirm=0'>
+                                                <img class='photoControlIcon' src='res/ui/delete.png' />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>";
+                        }
+                        $pdo = null;
+                    } catch (PDOException $e) {
+                        print "Error!: " . $e->getMessage() . "<br/>";
+                        die();
+                    }
+                ?>
             </div>
 
         </div>
-		
-		<div id="pageFooter">
-			<p>Site designed and developed by Robin Dunn.</p>
-			<p><?php echo 'Server running PHP version: ' . phpversion(); ?></p>
-		</div>
+        
+        <div id="pageFooter">
+            <p>Site designed and developed by Robin Dunn.</p>
+            <p><?php echo 'Server running PHP version: ' . phpversion(); ?></p>
+        </div>
 
     </body>
 
