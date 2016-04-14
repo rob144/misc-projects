@@ -87,6 +87,19 @@ img.photo {
     width:15px;
 }
 
+.divRow {
+	margin:10px;
+}
+
+.editPhotoFrame {
+	overflow:auto;
+}
+
+.editPhotoFields {
+	overflow:auto;
+	min-height:200px;
+}
+
 #frmFileUpload {
     display:none;
     /*visibility:hidden;*/

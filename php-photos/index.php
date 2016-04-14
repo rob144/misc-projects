@@ -15,7 +15,7 @@
         <div id="pageOuter">
 
             <h1>PHP - Photo Gallery</h1>
-            <a href="addPhotos" >Add Photos</a>
+            <a href="editphoto.php" >Add Photo</a>
             
             <form id="frmFileUpload">
                 <input id="inpFileUpload" name="inpFileUpload" type="file" />
@@ -28,7 +28,7 @@
                     try {
                         $pdo = new PDO('mysql:host='.constant("host").';dbname='.constant("dbname"), 
                                             constant("user"), constant("password"));
-                        $qryResult = $pdo->query('SELECT * from tbl_photos');
+                        $qryResult = $pdo->query('SELECT * from photos');
                         
                         for($i=0; $row = $qryResult->fetch(); $i++){
                             
@@ -49,13 +49,13 @@
                                             <a href='res/photos/$fileRef' rel='lightbox' class='photoControl' title='$description
                                                 <img class='photoControlIcon' src='res/ui/view.png' />
                                             </a>
-                                            <a class='photoControl' title='edit photo' href='?action=editphoto&oid=$photoId'>
+                                            <a class='photoControl' title='edit photo' href='editphoto.php?photoId=$photoId'>
                                                 <img class='photoControlIcon' src='res/ui/edit.png' />
                                             </a>
-                                            <a class='photoControl' title='download photo' href='?action=downloadphoto&oid=$photoId'>
+                                            <a class='photoControl' title='download photo' href='getphoto.php?photoId=$photoId'>
                                                 <img class='photoControlIcon' src='res/ui/download.png' />
                                             </a>
-                                            <a class='photoControl' title='delete photo' href='deletephoto.php?oid=$photoId&confirm=0'>
+                                            <a class='photoControl' title='delete photo' href='deletephoto.php?photoId=$photoId&confirm=0'>
                                                 <img class='photoControlIcon' src='res/ui/delete.png' />
                                             </a>
                                         </div>
